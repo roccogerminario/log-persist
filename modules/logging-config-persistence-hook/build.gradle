@@ -3,5 +3,5 @@ dependencies {
 //    compileOnly group: "com.liferay.portal", name: "release.dxp.api"
 
     compileOnly project(":modules:logging-config-persistence-api")
-    compileOnly group: "log4j", name: "log4j", version: "1.2.17"
+    compileOnly group: "org.apache.logging.log4j", name: "log4j-1.2-api"
 }

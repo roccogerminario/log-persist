@@ -15,6 +15,8 @@
 package com.liferay.logging.persist.service;
 
 import com.liferay.logging.persist.model.LoggingConfig;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
+import com.liferay.portal.kernel.cluster.Clusterable;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
@@ -123,6 +125,9 @@ public interface LoggingConfigLocalService
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public <T> T dslQuery(DSLQuery dslQuery);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public DynamicQuery dynamicQuery();
@@ -262,6 +267,9 @@ public interface LoggingConfigLocalService
 	 * @param level
 	 */
 	public void updateLogger(String name, String level);
+
+	@Clusterable
+	public void updateLoggerLevel(String name, String level);
 
 	/**
 	 * Updates the logging config in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

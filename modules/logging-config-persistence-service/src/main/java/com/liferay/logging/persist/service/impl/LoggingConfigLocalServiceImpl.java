@@ -16,8 +16,10 @@ package com.liferay.logging.persist.service.impl;
 
 import com.liferay.logging.persist.model.LoggingConfig;
 import com.liferay.logging.persist.service.base.LoggingConfigLocalServiceBaseImpl;
+import com.liferay.petra.log4j.Log4JUtil;
 import com.liferay.portal.aop.AopService;
 
+import com.liferay.portal.kernel.cluster.Clusterable;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -68,6 +70,17 @@ public class LoggingConfigLocalServiceImpl
 		config.setLevel(level);
 
 		updateLoggingConfig(config);
+
+	}
+
+	@Override
+	@Clusterable
+	public void updateLoggerLevel(final String name, final String level) {
+		Log4JUtil.setLevel(name, level, true);
+
+		if (_log.isInfoEnabled()) {
+			_log.info("Set " + name + " to " + level);
+		}
 	}
 
 	/**

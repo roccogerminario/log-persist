@@ -15,6 +15,7 @@
 package com.liferay.logging.persist.service;
 
 import com.liferay.logging.persist.model.LoggingConfig;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.PersistedModel;
@@ -119,6 +120,10 @@ public class LoggingConfigLocalServiceUtil {
 		throws PortalException {
 
 		return getService().deletePersistedModel(persistedModel);
+	}
+
+	public static <T> T dslQuery(DSLQuery dslQuery) {
+		return getService().dslQuery(dslQuery);
 	}
 
 	public static DynamicQuery dynamicQuery() {
@@ -287,6 +292,10 @@ public class LoggingConfigLocalServiceUtil {
 	 */
 	public static void updateLogger(String name, String level) {
 		getService().updateLogger(name, level);
+	}
+
+	public static void updateLoggerLevel(String name, String level) {
+		getService().updateLoggerLevel(name, level);
 	}
 
 	/**

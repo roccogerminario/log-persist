@@ -83,6 +83,8 @@ public class LoggingConfigPersister implements ActionFilter {
 
 		// persist the log data to the database.
 		_loggingConfigLocalService.updateLogger(loggerName, priority);
+
+		_loggingConfigLocalService.updateLoggerLevel(loggerName, priority);
 	}
 
 	/**
@@ -110,6 +112,8 @@ public class LoggingConfigPersister implements ActionFilter {
 
 				// update the logger details in the db
 				_loggingConfigLocalService.updateLogger(loggerName, priority);
+
+				_loggingConfigLocalService.updateLoggerLevel(loggerName, priority);
 			}
 		}
 	}

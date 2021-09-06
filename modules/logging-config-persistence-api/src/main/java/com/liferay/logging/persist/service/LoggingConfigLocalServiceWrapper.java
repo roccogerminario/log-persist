@@ -122,6 +122,11 @@ public class LoggingConfigLocalServiceWrapper
 	}
 
 	@Override
+	public <T> T dslQuery(com.liferay.petra.sql.dsl.query.DSLQuery dslQuery) {
+		return _loggingConfigLocalService.dslQuery(dslQuery);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
 		return _loggingConfigLocalService.dynamicQuery();
 	}
@@ -318,6 +323,11 @@ public class LoggingConfigLocalServiceWrapper
 	@Override
 	public void updateLogger(String name, String level) {
 		_loggingConfigLocalService.updateLogger(name, level);
+	}
+
+	@Override
+	public void updateLoggerLevel(String name, String level) {
+		_loggingConfigLocalService.updateLoggerLevel(name, level);
 	}
 
 	/**

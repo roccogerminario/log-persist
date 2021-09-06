@@ -18,6 +18,7 @@ import com.liferay.logging.persist.model.LoggingConfig;
 import com.liferay.logging.persist.service.LoggingConfigLocalService;
 import com.liferay.logging.persist.service.LoggingConfigLocalServiceUtil;
 import com.liferay.logging.persist.service.persistence.LoggingConfigPersistence;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -137,6 +138,11 @@ public abstract class LoggingConfigLocalServiceBaseImpl
 	@Override
 	public LoggingConfig deleteLoggingConfig(LoggingConfig loggingConfig) {
 		return loggingConfigPersistence.remove(loggingConfig);
+	}
+
+	@Override
+	public <T> T dslQuery(DSLQuery dslQuery) {
+		return loggingConfigPersistence.dslQuery(dslQuery);
 	}
 
 	@Override
@@ -290,6 +296,7 @@ public abstract class LoggingConfigLocalServiceBaseImpl
 	/**
 	 * @throws PortalException
 	 */
+	@Override
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
@@ -308,6 +315,7 @@ public abstract class LoggingConfigLocalServiceBaseImpl
 			(LoggingConfig)persistedModel);
 	}
 
+	@Override
 	public BasePersistence<LoggingConfig> getBasePersistence() {
 		return loggingConfigPersistence;
 	}
